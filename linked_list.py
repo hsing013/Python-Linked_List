@@ -46,7 +46,7 @@ class Linked:
         if self.head is None:
             return
         elif self.tail is None:
-            head = None
+            self.head = None
         else:
             if self.tail.previous is not self.head:
                 self.tail = self.tail.previous
@@ -115,32 +115,88 @@ class Linked:
             new_node.previous = node.previous
             node.previous.next = new_node
             node.previous = new_node
-            self.size += 1
-    def menu():
-        print("\t1. Push back a value.")
-        print("\t2. Push front a value.")
-        print("\t3. Pop back a value.")
-        print("\t4. Pop front a value.")
-        print("\t5. Print value at x index.")
-        print("\t6. Modify value at x index.")
-        print("\t7. Insert value at x index.")
-        print("\t8. Print the list")
-        return -1
+            self.size += 1    
+    def menu(self):
+        while 1:
+            print("\t1. Push back a value.")
+            print("\t2. Push front a value.")
+            print("\t3. Pop back a value.")
+            print("\t4. Pop front a value.")
+            print("\t5. Print value at x index.")
+            print("\t6. Modify value at x index.")
+            print("\t7. Insert value at x index.")
+            print("\t8. Print the list")
+            print("\t9. Quit Menu")
+            user = int(input(">"))
+            if user > 9 or user < 1:
+                print("The range for the menu is 1-9.")
+            else:
+                if user == 1:
+                    self.push_back(int(input("Enter a value:")))
+                elif user == 2:
+                    self.push_front(int(input("Enter a value:")))
+                elif user == 3:
+                    self.pop_back()
+                elif user == 4:
+                    self.pop_front()
+                elif user == 5:
+                    self.at(int(input("Enter the index:")), 0)
+                elif user == 6:
+                    index = int(input("Enter the index:"))
+                    value = int(input("Enter the new value:"))
+                    self.modify_value_at(index, value)
+                elif user == 7:
+                    index = int(input("Enter the index:"))
+                    value = int(input("Enter the value:"))
+                    self.insert_at(index, value)
+                elif user == 8:
+                    self.print()
+                elif user == 9:
+                    return
+    def random(self): #solely for testing purposes
+        while 1:
+            current_size = self.size - 1
+            user = random.randint(1, 7)
+            if user == 1:
+                self.push_back(random.randint(-100, 100))
+            elif user == 2:
+                self.push_front(random.randint(-100, 100))
+            elif user == 3:
+                #print("Pop back.")
+                self.pop_back()
+            elif user == 4:
+                #print("Pop front.")
+                self.pop_front()
+            elif user == 5:
+                #index = random.randint(0, current_size)
+                self.at(1, 0)
+            elif user == 6:
+                #index = random.randint(0, current_size)
+                value = random.randint(-100, 100)
+                self.modify_value_at(0, value)
+            elif user == 7:
+                #index = random.randint(0, current_size)
+                value = random.randint(-100, 100)
+                self.insert_at(0, value)
+            elif user == 8:
+                self.print()
 
 if __name__ == '__main__':
     #a = int(input())
     #b = int(input())
     l = Linked()
-    l.push_back(9)
-    #l.push_back(8)
-    # l.push_back(87)
-    # l.push_front(98)
-    # l.push_front(65)
-    # l.push_front(123)
-    l.print()
-    #l.pop_back()
-    l.print()
-    l.modify_value_at(0, -66)
-    l.insert_at(0, -56)
-    l.print()
+    # l.menu()
+    # l.push_back(9)
+    # #l.push_back(8)
+    # # l.push_back(87)
+    # # l.push_front(98)
+    # # l.push_front(65)
+    # # l.push_front(123)
+    # l.print()
+    # #l.pop_back()
+    # l.print()
+    # l.modify_value_at(0, -66)
+    # l.insert_at(0, -56)
+    # l.print()
+    l.random()
     
