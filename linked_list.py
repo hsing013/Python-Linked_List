@@ -155,7 +155,16 @@ class Linked:
                     return
     def random(self): #solely for testing purposes
         while 1:
-            current_size = self.size - 1
+            if self.size >= 1000000:
+                alternate = True
+                while self.size != 500000:
+                    if alternate == True:
+                        self.pop_back()
+                        alternate = False
+                    else:
+                        self.pop_front()
+                        alternate = True
+            print(self.size)
             user = random.randint(1, 7)
             if user == 1:
                 self.push_back(random.randint(-100, 100))
